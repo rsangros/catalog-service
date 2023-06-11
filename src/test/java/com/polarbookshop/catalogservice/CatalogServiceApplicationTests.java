@@ -17,24 +17,8 @@ class CatalogServiceApplicationTests {
 	private WebTestClient webTestClient;
 
 	@Test
-	void whenPostRequestThenBookCreated() {
-		var expectedBook = new Book("1231231231", "Title", "Author", 9.90);
-		webTestClient
-				.post()
-				.uri("/books")
-				.bodyValue(expectedBook)
-				.exchange()
-				.expectStatus().isCreated()
-				.expectBody(Book.class).value(actualBook -> {
-					assertThat(actualBook).isNotNull();
-					assertThat(actualBook.isbn()).
-							isEqualTo(expectedBook.isbn());
-				});
-	}
-
-	@Test
 	void whenGetRequestWithIdThenBookReturned() {
-		String isbn = new String("1231231231");
+		String isbn = new String("1231231230");
 		var expectedBook = new Book(isbn, "Title", "Author", 9.90);
 		webTestClient
 				.post()
@@ -60,8 +44,24 @@ class CatalogServiceApplicationTests {
 	}
 
 	@Test
+	void whenPostRequestThenBookCreated() {
+		var expectedBook = new Book("1231231231", "Title", "Author", 9.90);
+		webTestClient
+				.post()
+				.uri("/books")
+				.bodyValue(expectedBook)
+				.exchange()
+				.expectStatus().isCreated()
+				.expectBody(Book.class).value(actualBook -> {
+					assertThat(actualBook).isNotNull();
+					assertThat(actualBook.isbn()).
+							isEqualTo(expectedBook.isbn());
+				});
+	}
+
+	@Test
 	void whenPutRequestThenBookUpdated() {
-		String isbn = new String("1231231231");
+		String isbn = new String("1231231232");
 		var expectedBook = new Book(isbn, "Title", "Author", 9.90);
 
 		Book createdBook = webTestClient
