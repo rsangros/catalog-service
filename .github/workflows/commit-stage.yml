@@ -64,6 +64,12 @@ jobs:
         with:
           category: "/language:${{matrix.language}}"
 
+      - name: Upload vulnerability report
+        uses: github/codeql-action/upload-sarif@v2
+        if: success() || failure()
+        with:
+          sarif_file: "results/java.sarif"
+
       - name: Build, unit tests and integration tests
         run: |
           chmod +x gradlew
