@@ -59,11 +59,11 @@ jobs:
       #     echo "Run, Build Application using script"
       #     ./location_of_script_within_repo/buildscript.sh
 
-      - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v2
-        if: success() || failure()
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        id: scan
         with:
-          sarif_file: ${{ steps.scan.outputs.sarif-output }}
+          category: "/language:${{matrix.language}}"
 
       - name: Build, unit tests and integration tests
         run: |
