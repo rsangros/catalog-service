@@ -29,6 +29,7 @@ jobs:
           fail-build: false
           output-format: sarif
           severity-cutoff: high
+          by-cve: true
 
       - name: Inspect action SARIF report
         run: cat ${{ steps.scan.outputs.sarif }}
