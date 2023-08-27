@@ -22,9 +22,9 @@ jobs:
         id: scan
         with:
           path: "${{ github.workspace }}"
-          fail-build: false
+          fail-build: true
           output-format: sarif
-          severity-cutoff: low
+          severity-cutoff: high
       - name: Inspect action SARIF report
         run: cat ${{ steps.scan.outputs.sarif }}
       - name: Upload vulnerability report
