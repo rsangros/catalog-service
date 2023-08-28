@@ -7,10 +7,7 @@ jobs:
   build:
     name: Build and Test
     runs-on: ubuntu-22.04
-    permissions:
-      actions: read
-      contents: write
-      security-events: write
+    permissions: read-all|write-all
 
     strategy:
       fail-fast: false
