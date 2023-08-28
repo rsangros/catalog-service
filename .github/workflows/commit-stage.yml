@@ -8,7 +8,7 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-22.04
     permissions:
-      read-all|write-all
+      write-all
 
     strategy:
       fail-fast: false
